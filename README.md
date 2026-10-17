@@ -36,6 +36,15 @@ Put the component in your layout, before `</body>`:
 - For a signed-in visitor, the component also gives the widget a function that fetches a fresh token from `GET /falcon-skills/context`. No token is ever printed into the page. Each token carries `company`, `user_id`, a new `jti`, and expires in 5 minutes.
 - Extra attributes go on the widget's script tag, for example `data-falcon-skills-page="dashboard"`. A CSP nonce is picked up from `Vite::cspNonce()`, or pass `nonce="..."`.
 - After a logout that doesn't reload the page (an Inertia or Livewire visit), call `window.FalconSkills?.clearIdentity()`.
+- A problem with the widget never breaks your page. If anything fails while the widget renders, the error is reported to your exception handler and the widget renders nothing.
+
+To keep the page up even when the package isn't installed (for example, a deploy that skipped `composer install`), include it instead of using the component tag. `@includeIf` renders nothing when the view doesn't exist:
+
+```blade
+@includeIf('falcon-skills::widget')
+```
+
+Pass a CSP nonce with `@includeIf('falcon-skills::widget', ['nonce' => $nonce])`.
 
 The token carries the visitor's `name` by default. To send the claims your Falcon Skills workspace expects, set them in a service provider. The package always sets `company`, `user_id`, `jti`, `iat` and `exp` itself.
 
