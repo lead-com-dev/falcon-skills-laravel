@@ -7,6 +7,10 @@ use FalconSkills\Tests\TestCase;
 use FalconSkills\UserContext;
 use Illuminate\Auth\GenericUser;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Exceptions;
+use Illuminate\Support\Facades\View;
+use Illuminate\View\ViewException;
+use InvalidArgumentException;
 
 class WidgetTest extends TestCase
 {
@@ -104,6 +108,41 @@ class WidgetTest extends TestCase
         config(['falcon-skills.widget.key' => null]);
 
         $this->assertSame('', trim((string) $this->blade('<x-falcon-skills::widget />')));
+    }
+
+    public function test_the_widget_can_be_included_and_takes_a_nonce(): void
+    {
+        $view = $this->blade("@includeIf('falcon-skills::widget', ['nonce' => 'abc123'])");
+
+        $view->assertSee('src="https://skills.falcon.com/widget/v1/falcon-skills.js"', false);
+        $view->assertSee('nonce="abc123"', false);
+    }
+
+    public function test_a_widget_error_is_reported_and_the_page_still_renders(): void
+    {
+        Exceptions::fake();
+        config(['falcon-skills.widget.guard' => 'not-a-guard']);
+
+        $view = $this->blade('<p>before</p><x-falcon-skills::widget /><p>after</p>');
+
+        $view->assertSee('<p>before</p>', false);
+        $view->assertSee('<p>after</p>', false);
+        $view->assertDontSee('falcon-skills.js', false);
+        Exceptions::assertReported(InvalidArgumentException::class);
+    }
+
+    public function test_a_broken_widget_view_renders_nothing(): void
+    {
+        Exceptions::fake();
+        $directory = sys_get_temp_dir().'/falcon-skills-broken-'.uniqid();
+        mkdir($directory.'/components', recursive: true);
+        file_put_contents($directory.'/components/widget.blade.php', "@php throw new RuntimeException('broken widget view'); @endphp");
+        View::prependNamespace('falcon-skills', $directory);
+
+        $view = $this->blade("<p>before</p>@includeIf('falcon-skills::widget')<p>after</p>");
+
+        $view->assertSee('<p>before</p><p>after</p>', false);
+        Exceptions::assertReported(fn (ViewException $exception): bool => str_contains($exception->getMessage(), 'broken widget view'));
     }
 
     private function ada(): GenericUser
