@@ -1,0 +1,46 @@
+{
+    "name": "falcon-skills/laravel",
+    "description": "Falcon Skills for Laravel: the widget embed, and the MCP endpoint Falcon calls to run your tools as the signed-in visitor.",
+    "keywords": ["falcon-skills", "widget", "mcp", "laravel"],
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "illuminate/contracts": "^12.0|^13.0",
+        "illuminate/database": "^12.0|^13.0",
+        "illuminate/http": "^12.0|^13.0",
+        "illuminate/routing": "^12.0|^13.0",
+        "illuminate/support": "^12.0|^13.0",
+        "illuminate/validation": "^12.0|^13.0",
+        "illuminate/view": "^12.0|^13.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0|^11.0",
+        "phpunit/phpunit": "^11.0|^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "FalconSkills\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FalconSkills\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "FalconSkills\\FalconSkillsServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
