@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 /**
  * The signed user context: the token the app signs for its widget with the
- * shared widget secret, which Falcon Skills forwards on each tool call
+ * shared widget secret, which Falcon forwards on each tool call
  * (X-Falcon-User-Context). Verification takes the compact 2-part form or an
  * HS256 JWT. A jti may repeat: one token covers several calls until it
  * expires.

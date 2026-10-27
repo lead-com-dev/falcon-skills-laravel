@@ -1,6 +1,6 @@
 {
     "name": "falcon-skills/laravel",
-    "description": "Falcon Skills for Laravel: the widget embed, and the MCP endpoint Falcon calls to run your tools as the signed-in visitor.",
+    "description": "Falcon for Laravel: the widget embed, and the MCP endpoint Falcon calls to run your tools as the signed-in visitor.",
     "keywords": ["falcon-skills", "widget", "mcp", "laravel"],
     "type": "library",
     "license": "MIT",

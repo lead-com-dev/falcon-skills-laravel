@@ -9,7 +9,7 @@ use InvalidArgumentException;
 use Throwable;
 
 /**
- * The slice of MCP that Falcon Skills uses, over plain JSON-RPC: initialize,
+ * The slice of MCP that Falcon uses, over plain JSON-RPC: initialize,
  * ping, tools/list and tools/call. No sessions and no streaming, so it does
  * not depend on any MCP library version the app may already have.
  */
@@ -121,7 +121,7 @@ final class McpServer
             'protocolVersion' => in_array($requested, self::PROTOCOL_VERSIONS, true) ? $requested : self::PROTOCOL_VERSIONS[0],
             'capabilities' => ['tools' => ['listChanged' => false]],
             'serverInfo' => [
-                'name' => (string) ($this->server['name'] ?? 'Falcon Skills tools'),
+                'name' => (string) ($this->server['name'] ?? 'Falcon tools'),
                 'version' => (string) ($this->server['version'] ?? '1.0.0'),
             ],
         ];

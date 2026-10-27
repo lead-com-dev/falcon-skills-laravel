@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 class VerifyServiceToken
 {
     /**
-     * Only Falcon Skills' servers hold the service token. With no token
+     * Only Falcon's servers hold the service token. With no token
      * configured the endpoint is off and answers 404 to every caller. The 401
      * carries no WWW-Authenticate challenge, so OAuth clients don't try to
      * sign in here.

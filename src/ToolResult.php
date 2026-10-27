@@ -15,7 +15,7 @@ final class ToolResult
     }
 
     /**
-     * The card the Falcon Skills widget renders: a one-line summary, label and
+     * The card the Falcon widget renders: a one-line summary, label and
      * value pairs, and links. Sent as structured content and as JSON text.
      *
      * @param  list<array{label: string, value: string}>  $fields

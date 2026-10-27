@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Str;
 
 /**
- * A tool Falcon Skills can run for a widget visitor. The visitor comes only
+ * A tool Falcon can run for a widget visitor. The visitor comes only
  * from the verified user context, never from the arguments.
  */
 abstract class Tool

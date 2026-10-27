@@ -7,8 +7,8 @@ return [
     | Company and widget secret
     |--------------------------------------------------------------------------
     |
-    | "company" is this app's company slug in Falcon Skills. The widget secret
-    | is the HMAC-SHA256 secret shared with Falcon Skills: the widget's user
+    | "company" is this app's company slug in Falcon. The widget secret
+    | is the HMAC-SHA256 secret shared with Falcon: the widget's user
     | context is signed with it, and Falcon forwards that context on every
     | tool call made for a signed-in visitor. Without both, the widget runs
     | for logged-out visitors only and calls that carry a context are refused.
@@ -48,7 +48,7 @@ return [
 
     'widget' => [
         'key' => env('FALCON_SKILLS_WIDGET_KEY'),
-        'script_url' => env('FALCON_SKILLS_WIDGET_URL', 'https://skills.falcon.com/widget/v1/falcon-skills.js'),
+        'script_url' => env('FALCON_SKILLS_WIDGET_URL', 'https://falcon.how/widget/v1/falcon-skills.js'),
         'context_path' => env('FALCON_SKILLS_CONTEXT_PATH', 'falcon-skills/context'),
         'middleware' => ['web'],
         'guard' => null,
@@ -59,7 +59,7 @@ return [
     | Tools (MCP endpoint)
     |--------------------------------------------------------------------------
     |
-    | Falcon Skills calls this app's tools with POST requests to "path". It
+    | Falcon calls this app's tools with POST requests to "path". It
     | sends the service token as "Authorization: Bearer <token>"; while the
     | token is empty the endpoint answers 404. Rate limits are calls per
     | minute for each signed-in visitor, and for all logged-out calls
@@ -76,7 +76,7 @@ return [
         'rate_limit_per_minute' => (int) env('FALCON_SKILLS_MCP_RATE_LIMIT', 120),
         'guest_rate_limit_per_minute' => (int) env('FALCON_SKILLS_MCP_GUEST_RATE_LIMIT', 600),
         'server' => [
-            'name' => env('FALCON_SKILLS_MCP_SERVER_NAME', env('APP_NAME', 'Laravel').' for Falcon Skills'),
+            'name' => env('FALCON_SKILLS_MCP_SERVER_NAME', env('APP_NAME', 'Laravel').' for Falcon'),
             'version' => '1.0.0',
             'instructions' => null,
         ],
