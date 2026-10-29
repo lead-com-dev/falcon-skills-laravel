@@ -9,7 +9,7 @@ use Illuminate\Foundation\Vite;
 use Illuminate\View\Component;
 
 /**
- * <x-falcon-skills::widget /> loads the Falcon Skills widget. For a signed-in
+ * <x-falcon-skills::widget /> loads the Falcon widget. For a signed-in
  * visitor it also hands the widget a function that fetches a fresh signed
  * context, so the widget knows who is asking. Extra attributes (such as
  * data-falcon-skills-page) go on the widget's script tag. Any error while

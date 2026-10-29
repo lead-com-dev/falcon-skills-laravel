@@ -49,7 +49,7 @@ abstract class TestCase extends Orchestra
         $app['config']->set('falcon-skills.mcp.token', self::SERVICE_TOKEN);
         $app['config']->set('falcon-skills.widget_secret', self::WIDGET_SECRET);
         $app['config']->set('falcon-skills.company', 'acme');
-        $app['config']->set('falcon-skills.mcp.server.name', 'Acme for Falcon Skills');
+        $app['config']->set('falcon-skills.mcp.server.name', 'Acme for Falcon');
         $app['config']->set('falcon-skills.mcp.tools', [GreetVisitor::class, WhoAmI::class, BrokenTool::class]);
     }
 

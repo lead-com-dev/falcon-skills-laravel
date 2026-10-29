@@ -1,6 +1,6 @@
-# Falcon Skills for Laravel
+# Falcon for Laravel
 
-Puts the Falcon Skills widget on your Laravel app and lets Falcon run your app's tools for its visitors. You add one Blade component to your layout, list your tool classes, and set four environment variables.
+Puts the Falcon widget on your Laravel app and lets Falcon run your app's tools for its visitors. You add one Blade component to your layout, list your tool classes, and set four environment variables.
 
 - **Widget.** `<x-falcon-skills::widget />` loads the widget. When a visitor is signed in, the widget fetches a short-lived signed token from your app, so Falcon knows who is asking without trusting anything the browser says.
 - **Tools.** Falcon calls your tools over MCP at `POST /mcp/falcon` and runs each call as the signed-in visitor.
@@ -18,10 +18,10 @@ php artisan vendor:publish --tag=falcon-skills-config
 ```
 
 ```dotenv
-FALCON_SKILLS_COMPANY=       # your company slug in Falcon Skills
-FALCON_SKILLS_WIDGET_KEY=    # the widget key (ck_...) from Falcon Skills
-FALCON_SKILLS_WIDGET_SECRET= # the widget signing secret from Falcon Skills
-FALCON_SKILLS_MCP_TOKEN=     # generated at setup, also entered in Falcon Skills
+FALCON_SKILLS_COMPANY=       # your company slug in Falcon
+FALCON_SKILLS_WIDGET_KEY=    # the widget key (ck_...) from Falcon
+FALCON_SKILLS_WIDGET_SECRET= # the widget signing secret from Falcon
+FALCON_SKILLS_MCP_TOKEN=     # generated at setup, also entered in Falcon
 ```
 
 ## Add the widget
@@ -46,7 +46,7 @@ To keep the page up even when the package isn't installed (for example, a deploy
 
 Pass a CSP nonce with `@includeIf('falcon-skills::widget', ['nonce' => $nonce])`.
 
-The token carries the visitor's `name` by default. To send the claims your Falcon Skills workspace expects, set them in a service provider. The package always sets `company`, `user_id`, `jti`, `iat` and `exp` itself.
+The token carries the visitor's `name` by default. To send the claims your Falcon workspace expects, set them in a service provider. The package always sets `company`, `user_id`, `jti`, `iat` and `exp` itself.
 
 ```php
 use FalconSkills\FalconSkills;
@@ -117,7 +117,7 @@ Then list it in `config/falcon-skills.php`:
 ],
 ```
 
-In Falcon Skills, add an MCP connection with base URL `https://your-app.com/mcp/falcon`, header `Authorization` and secret `Bearer <FALCON_SKILLS_MCP_TOKEN>`.
+In Falcon, add an MCP connection with base URL `https://your-app.com/mcp/falcon`, header `Authorization` and secret `Bearer <FALCON_SKILLS_MCP_TOKEN>`.
 
 - The tool name Falcon sees is the kebab-case class name (`order-status`). Override `name()` to change it.
 - `$requiresUser = true` answers "Sign in to use this tool." to logged-out visitors before `handle()` runs.

@@ -38,7 +38,7 @@ class EndpointTest extends TestCase
         ])
             ->assertOk()
             ->assertJsonPath('result.protocolVersion', '2025-06-18')
-            ->assertJsonPath('result.serverInfo.name', 'Acme for Falcon Skills')
+            ->assertJsonPath('result.serverInfo.name', 'Acme for Falcon')
             ->assertJsonPath('result.capabilities.tools.listChanged', false);
     }
 

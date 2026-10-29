@@ -83,7 +83,7 @@ class WidgetTest extends TestCase
     {
         $view = $this->blade('<x-falcon-skills::widget />');
 
-        $view->assertSee('src="https://skills.falcon.com/widget/v1/falcon-skills.js"', false);
+        $view->assertSee('src="https://falcon.how/widget/v1/falcon-skills.js"', false);
         $view->assertSee('data-falcon-skills-key="ck_test_123"', false);
         $view->assertSee('data-falcon-skills-company="acme"', false);
         $view->assertDontSee('__falconSkillsPendingIdentityProvider', false);
@@ -114,7 +114,7 @@ class WidgetTest extends TestCase
     {
         $view = $this->blade("@includeIf('falcon-skills::widget', ['nonce' => 'abc123'])");
 
-        $view->assertSee('src="https://skills.falcon.com/widget/v1/falcon-skills.js"', false);
+        $view->assertSee('src="https://falcon.how/widget/v1/falcon-skills.js"', false);
         $view->assertSee('nonce="abc123"', false);
     }
 
